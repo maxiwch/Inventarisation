@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Inventarisation.Models.Transfer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Трансферы</h1>
+
+<p>
+    <a  class="btn btn-primary" asp-action="Create">Добавить новый трансфер</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee.Department.Name)
+
+            </th>
+              <th>
+                @Html.DisplayNameFor(model => model.Device.TypeOfDevice.Name)
+            </th>
+              <th>
+                @Html.DisplayNameFor(model => model.Device.Producer.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Device.Name)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.DateStart)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.DateEnd)
+            </th>
+           
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.Department.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Device.TypeOfDevice.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Device.Producer.Name)
+
+            </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.Device.Name)
+
+            </td>
+            <td>
+              @* @if(item.Device != null)*@ @Html.DisplayFor(modelItem => item.DateStart)
+            </td>
+           
+            <td>
+                 @*@if(item.Employee != null)*@ @Html.DisplayFor(modelItem => item.DateEnd)
+            </td>
+           
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Редактирование</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Детали</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
